@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView, Dimensions, Button, TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, Dimensions, TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { ScreenOrientation } from 'expo';
-import { getCardColor, getCardChar } from '../../components/sequence/constants';
 import BaseHand, { HandProps } from '../BaseHand';
 import { renderCard } from './utils';
 
@@ -75,6 +74,6 @@ export default class JaipurHand extends React.Component<HandProps, State> implem
             <View style={{ flex: 1, display: "flex" }}>
                 <Text style={{ flex: 1, textAlign: "center", lineHeight: 80, fontSize: 35, color: "white", textShadowColor: "black", textShadowRadius: 10, }}>{this.state.displayText}</Text>
             </View>
-        </SafeAreaView>
+        </SafeAreaView>;
     }
 }

@@ -1,7 +1,5 @@
 // @ts-ignore
 import { StyleSheet, Dimensions, useWindowDimensions } from 'react-native';
-import { theme } from "../../modules/home/index"
-export const { padding, color, fontSize, fontFamily } = theme;
 
 export function WIDTH(scale_pct?: number) {
     if (scale_pct === null || scale_pct === undefined) { return undefined; }

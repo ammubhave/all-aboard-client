@@ -49,7 +49,9 @@ type State = {
     },
     camelToken: boolean,
     currentPlayerIndex: number,
-    buttons: [string, string][],
+    buttons: [string, string, boolean][],
+
+    players: string[],
 };
 
 export default class JaipurBoard extends React.Component<BoardProps, State> implements BaseBoard<State> {
@@ -191,7 +193,9 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
             },
             camelToken: false,
             currentPlayerIndex: -1,
-            buttons: [["start", "Start Game"]],
+            buttons: [["start", "Start Game", false]],
+
+            players: [],
         };
     }
 
@@ -199,32 +203,8 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
         this.setState(state);
     }
 
-    renderButton(title: string, onPress: (event: GestureResponderEvent) => void = () => { }) {
-        return <TouchableOpacity
-            style={{
-                backgroundColor: "red",
-                flex: 1,
-                display: "flex",
-                borderRadius: 30,
-                margin: 5,
-            }}
-            onPress={onPress}
-        >
-            <Text style={{
-                flex: 1,
-                color: "white",
-                fontWeight: "800",
-                fontSize: 20,
-                textAlign: "center",
-                textAlignVertical: "center",
-                borderWidth: 3,
-                borderRadius: 12,
-                padding: 2,
-                borderColor: 'black',
-            }}>
-                {title}
-            </Text>
-        </TouchableOpacity>;
+    updatePlayers(players: string[]) {
+        this.setState({ players });
     }
 
     render() {
@@ -235,12 +215,13 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
 
         const goodsTokenTrackOffsets = 1.38;
 
-        console.log((new Array(this.state.bonusTokens.bonus_3)).map(_ => "hello"));
-
         return <SafeAreaView style={styles.mat}>
             {renderBoardMat()}
 
-            <View style={{ position: "absolute", top: "50%", transform: [{ rotateZ: "-90deg" }], left: "0%" }}>
+            <View style={{ position: "absolute", top: "50%", transform: [{ rotateZ: "-90deg" }], left: "-7.5%", flexDirection: "row", width: "20%" }}>
+                <Button title="Back" onPress={() => {
+                    this.props.onBack();
+                }} />
                 <Button title="Reset" onPress={() => {
                     this.props.onAction({ "type": "reset" });
                 }} />
@@ -306,8 +287,13 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
                         if (this.state.currentPlayerIndex !== -1 && this.state.currentPlayerIndex !== i) {
                             return;
                         }
-                        return this.state.buttons.map(([action, title]) => {
-                            return <Button title={title} onPress={() => {
+                        return this.state.buttons.map(([action, title, disabled]) => {
+                            if (action === "start" && this.state.players.length !== 2)
+                                disabled = true;
+                            if (action === "start" && this.state.players.length > i) {
+                                title = title + " (" + this.state.players[i] + ")";
+                            }
+                            return <Button title={title} disabled={disabled} onPress={() => {
                                 if (action === "start") {
                                     this.props.onStart();
                                 } else {
@@ -315,13 +301,13 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
                                 }
                             }} />;
                         });
-                    }
+                    };
 
                     return <View style={[styles.buttonPanel, i == 0 ? { bottom: "68%", transform: [{ rotateX: "180deg" }, { rotateY: "180deg" }] } : { top: "68%" }]}>
                         {getButton()}
                     </View>;
                 })
             }
-        </SafeAreaView>
+        </SafeAreaView>;
     }
 };

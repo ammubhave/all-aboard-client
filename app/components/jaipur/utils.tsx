@@ -3,7 +3,7 @@ import { StyleProp, ViewStyle, View, Image, ImageBackground, Text, Dimensions, T
 import styles, { HEIGHT, WIDTH, MIN_WIDTH_HEIGHT } from "./styles";
 
 
-export const Card: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, right?: number, flip?: boolean, type: string, count?: number, selected?: boolean, isSelectable?: boolean, disabled?: boolean, onPress?: (event: GestureResponderEvent) => void }> = (props) => {
+export const Card: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, right?: number, flip?: boolean, type: string, count?: number, selected?: boolean, isSelectable?: boolean, disabled?: boolean, onPress?: (event: GestureResponderEvent) => void; }> = (props) => {
     const cardTypeToImage = {
         'camel': require('./camel_card.png'),
         'cloth': require('./cloth_card.png'),
@@ -15,11 +15,11 @@ export const Card: React.FunctionComponent<{ top?: number, bottom?: number, left
         'spice': require('./spice_card.png'),
     };
 
-    const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle> }> = (rootProps) => {
+    const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle>; }> = (rootProps) => {
         return props.isSelectable ?
             <TouchableOpacity style={rootProps.style} onPress={props.onPress}>{rootProps.children}</TouchableOpacity> :
             <View style={rootProps.style}>{rootProps.children}</View>;
-    }
+    };
 
     return <RootElement style={[styles.card, {
         top: HEIGHT(props.top),
@@ -46,7 +46,7 @@ export const Card: React.FunctionComponent<{ top?: number, bottom?: number, left
                 textAlignVertical: "center",
             } as {
                 textAlign: "center",
-                textAlignVertical: "center"
+                textAlignVertical: "center";
             }, {
                 fontSize: MIN_WIDTH_HEIGHT(2),
                 color: "green",
@@ -72,10 +72,10 @@ export const Card: React.FunctionComponent<{ top?: number, bottom?: number, left
             backgroundColor: "rgba(0,0,0,0.5)",
         }]}></View>} */}
     </RootElement>;
-}
+};
 
 
-export const Coin: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, right?: number, flip?: boolean, value: number }> = (props) => {
+export const Coin: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, right?: number, flip?: boolean, value: number; }> = (props) => {
     return <View style={[styles.token, {
         top: HEIGHT(props.top),
         bottom: HEIGHT(props.bottom),
@@ -94,9 +94,9 @@ export const Coin: React.FunctionComponent<{ top?: number, bottom?: number, left
             }}>{props.value}</Text>
         </ImageBackground>
     </View>;
-}
+};
 
-export const Token: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, right?: number, flip?: boolean, type: string, value?: number }> = (props) => {
+export const Token: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, right?: number, flip?: boolean, type: string, value?: number; }> = (props) => {
     const tokenTypeToImage = {
         'bonus_3': require('./bonus_3_token.png'),
         'bonus_4': require('./bonus_4_token.png'),
@@ -133,18 +133,25 @@ export const Token: React.FunctionComponent<{ top?: number, bottom?: number, lef
             }}>{props.value}</Text>}
         </ImageBackground>
     </View >;
-}
+};
 
-export const Button: React.FunctionComponent<{ flip?: boolean, title: string, onPress?: (event: GestureResponderEvent) => void }> = (props) => {
-    return <TouchableOpacity
+export const Button: React.FunctionComponent<{ flip?: boolean, title: string, disabled?: boolean, onPress?: (event: GestureResponderEvent) => void; }> = (props) => {
+
+    const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle>; }> = (rootProps) => {
+        return !props.disabled ?
+            <TouchableOpacity style={rootProps.style} onPress={props.onPress}>{rootProps.children}</TouchableOpacity> :
+            <View style={rootProps.style}>{rootProps.children}</View>;
+    };
+
+
+    return <RootElement
         style={{
-            backgroundColor: "red",
+            backgroundColor: props.disabled ? "grey" : "red",
             flex: 1,
             display: "flex",
             borderRadius: 30,
             margin: 5,
         }}
-        onPress={props.onPress}
     >
         <Text style={{
             flex: 1,
@@ -160,8 +167,8 @@ export const Button: React.FunctionComponent<{ flip?: boolean, title: string, on
         }}>
             {props.title}
         </Text>
-    </TouchableOpacity>;
-}
+    </RootElement>;
+};
 
 export function renderCard(type: string, isSelected = false, style: StyleProp<ViewStyle> = false) {
     const cardTypeToImage = {
@@ -182,7 +189,7 @@ export function renderCard(type: string, isSelected = false, style: StyleProp<Vi
             textAlignVertical: "center",
         } as {
             textAlign: "center",
-            textAlignVertical: "center"
+            textAlignVertical: "center";
         }, {
             fontSize: MIN_WIDTH_HEIGHT(5),
             color: "green",

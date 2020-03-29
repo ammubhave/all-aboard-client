@@ -8,17 +8,17 @@ import BaseBoard, { BoardProps } from '../BaseBoard';
 type Card = {
     color: string,
     prestige: number,
-    cost: { white: number, black: number, red: number, blue: number, green: number }
-}
+    cost: { white: number, black: number, red: number, blue: number, green: number; };
+};
 
 type Noble = {
-    cost: { color: string, count: number }[],
+    cost: { color: string, count: number; }[],
     prestige: number,
-}
+};
 
 type BoardState = {
     faceupCards: Card[][],
-    coins: { white: number, black: number, red: number, blue: number, green: number, gold: number },
+    coins: { white: number, black: number, red: number, blue: number, green: number, gold: number; },
     nobles: Noble[],
     currentPlayerIndex: number,
 };
@@ -57,27 +57,31 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
         this.setState(board);
     }
 
+    updatePlayers(players: string[]) {
+
+    }
+
     onCardPress = (rowIndex: number, colIndex: number) => {
         this.props.onAction({
             type: "card",
             rowIndex,
             colIndex
-        })
-    }
+        });
+    };
 
     onCoinPress = (color: string) => {
         this.props.onAction({
             type: "coin",
             color
-        })
-    }
+        });
+    };
 
     onNoblePress = (nobleIndex: number) => {
         this.props.onAction({
             type: "noble",
             nobleIndex
-        })
-    }
+        });
+    };
 
     renderCard(cell: Card, rowIndex: number, colIndex: number) {
         if (cell === null) {
@@ -103,7 +107,7 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
                     flex: 1,
                 }}><Text style={{ textAlign: "center", fontSize: 27, fontWeight: "800", color: forecolor }}>{count}</Text></View>
             </View>;
-        }
+        };
 
         let backgroundColor = cell.color;
         if (backgroundColor === "black") {
@@ -143,7 +147,7 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
                     {renderCoinCost("black", cell.cost.black)}
                 </View>
             </View>
-        </TouchableHighlight>
+        </TouchableHighlight>;
     }
 
     getBackgroundColorCardCoin(color: string) {
@@ -198,12 +202,12 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
             onPress={() => this.onCoinPress(color)}
             underlayColor='#fff'>
             <Text style={{ flex: 1, textAlign: "center", lineHeight: "118%", fontSize: 80, fontWeight: "800", color: forecolor, textShadowRadius: 5, textShadowColor: "black" }}>{count}</Text>
-        </TouchableHighlight>
+        </TouchableHighlight>;
     }
 
     renderNoble(noble: Noble, nobleIndex: number) {
         if (noble === null) {
-            return <View style={{ flex: 1 }}></View>
+            return <View style={{ flex: 1 }}></View>;
         }
         const { cost, prestige } = noble;
         while (cost.length < 3) {
@@ -254,14 +258,14 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
                 </View>
                 <View style={{ flex: 3, backgroundColor: "rgba(128, 128, 128, 0.5)" }}></View>
             </View>
-        </TouchableHighlight>
+        </TouchableHighlight>;
     }
 
     render() {
         const { faceupCards, coins, nobles, currentPlayerIndex } = this.state;
 
         if (currentPlayerIndex === -1) {
-            return <Button title="Start Game" onPress={this.props.onStart} />
+            return <Button title="Start Game" onPress={this.props.onStart} />;
         }
 
         const styles = {
@@ -294,7 +298,7 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
                 paddingBottom: "13%",
                 paddingRight: "11.05%"
             }
-        }
+        };
 
         const renderCoinCell = (color: string, count: number) => {
             return <View style={styles.coinCell}>
@@ -316,7 +320,7 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
                             {row.map((cell, colIndex) => {
                                 return <View style={styles.cardCell}>
                                     <View style={styles.card}>{this.renderCard(cell, rowIndex, colIndex)}</View>
-                                </View>
+                                </View>;
                             })}
                         </View>;
                     })}
@@ -356,6 +360,6 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
                     </View>
                 </View>
             </View>
-        </ImageBackground >
+        </ImageBackground >;
     }
 };

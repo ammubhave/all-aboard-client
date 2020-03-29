@@ -1,19 +1,31 @@
+import 'react-native-gesture-handler';
+
 import React, { Component } from 'react';
-
-import { Provider } from 'react-redux';
-
-
-import Router from './app/config/routes'
-import store from './app/redux/store';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from "./app/scenes/Home";
+import Hand from "./app/scenes/Hand";
+import Board from "./app/scenes/Board";
 
 console.disableYellowBox = true;
+
+export type RootStackParamList = {
+  Home: undefined;
+  Board: { game: string; };
+  Hand: { playerName: string, game: string; };
+};
+const RootStack = createStackNavigator<RootStackParamList>();
 
 export default class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <Router />
-      </Provider>
+      <NavigationContainer>
+        <RootStack.Navigator headerMode="screen">
+          <RootStack.Screen name="Home" component={Home} />
+          <RootStack.Screen name="Board" component={Board} options={{ headerShown: false }} />
+          <RootStack.Screen name="Hand" component={Hand} />
+        </RootStack.Navigator>
+      </NavigationContainer>
     );
   }
 }

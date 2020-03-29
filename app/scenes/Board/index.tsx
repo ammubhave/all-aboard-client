@@ -1,17 +1,21 @@
 import React from 'react';
-import axios from 'axios';
 
 import socketIOClient from "socket.io-client";
 import SequenceBoard from '../../components/sequence/SequenceBoard';
 import SplendorBoard from '../../components/splendor/SplendorBoard';
 import JaipurBoard from '../../components/jaipur/JaipurBoard';
 import { SERVER_URI } from '../../config/constants';
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RootStackParamList } from "../../../App";
+import { RouteProp } from "@react-navigation/native";
 
-type Props = {};
+type BoardScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Board'>;
+type BoardScreenRouteProp = RouteProp<RootStackParamList, 'Board'>;
+type Props = { navigation: BoardScreenNavigationProp, route: BoardScreenRouteProp; };
 
 export default class Board extends React.Component<Props> {
     socket: SocketIOClient.Socket;
-    board: React.RefObject<JaipurBoard>;
+    board: React.RefObject<JaipurBoard | SequenceBoard | SplendorBoard>;
 
     constructor(props: Props) {
         super(props);
@@ -26,6 +30,13 @@ export default class Board extends React.Component<Props> {
             }
             this.board.current.updateBoard(board);
         });
+        this.socket.on("players", (players: any) => {
+            console.log(players);
+            if (players === null || players === undefined /*Object.keys(players).length === 0*/) {
+                return;
+            }
+            this.board.current.updatePlayers(players);
+        });
     }
 
     async componentWillUnmount() {
@@ -34,13 +45,27 @@ export default class Board extends React.Component<Props> {
 
     onStart = async () => {
         this.socket.emit("start");
-    }
+    };
 
     onAction = async (action: any) => {
         this.socket.emit("action", action);
-    }
+    };
+
+    onBack = () => {
+        this.props.navigation.goBack();
+    };
 
     render() {
-        return <JaipurBoard onStart={this.onStart} onAction={this.onAction} ref={this.board} />
+        const BoardImpl = (() => {
+            switch (this.props.route.params.game) {
+                case 'jaipur':
+                    return JaipurBoard;
+                case 'sequence':
+                    return SequenceBoard;
+                case 'splendor':
+                    return SplendorBoard;
+            }
+        })();
+        return <BoardImpl ref={this.board} onStart={this.onStart} onAction={this.onAction} onBack={this.onBack} />;
     }
 };

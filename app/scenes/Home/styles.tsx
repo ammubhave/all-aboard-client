@@ -1,7 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { theme } from "../../modules/home/index"
-export const { padding, color, fontSize, fontFamily } = theme;
-import Constants from 'expo-constants';
 
 const styles = StyleSheet.create({
     container: {

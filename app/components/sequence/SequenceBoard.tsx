@@ -8,7 +8,7 @@ import BaseBoard, { BoardProps } from '../BaseBoard';
 type BoardCell = {
     card: string,
     state: string,
-}
+};
 
 type BoardState = {
     layout: BoardCell[][],
@@ -43,6 +43,11 @@ export default class SequenceBoard extends React.Component<BoardProps, State> im
         this.setState({ board });
     }
 
+
+    updatePlayers(players: string[]) {
+
+    }
+
     renderCard = (cell: BoardCell) => {
         const { card, state } = cell;
 
@@ -54,21 +59,21 @@ export default class SequenceBoard extends React.Component<BoardProps, State> im
                 {char ?? card}
             </Text>
         </View >;
-    }
+    };
 
     renderCardRow = (row: BoardCell[]) => {
         return <View style={{ flex: 1, flexDirection: "row" }}>{row.map(this.renderCard)}</View>;
-    }
+    };
 
     render() {
         const { board } = this.state;
 
         if (board.currentPlayer === undefined) {
-            return <Button title="Start Game" onPress={this.props.onStart} />
+            return <Button title="Start Game" onPress={this.props.onStart} />;
         }
 
         return <SafeAreaView style={{ flex: 1 }}>
             {board.layout.map(this.renderCardRow)}
-        </SafeAreaView>
+        </SafeAreaView>;
     }
 };
