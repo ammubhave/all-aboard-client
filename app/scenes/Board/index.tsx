@@ -8,6 +8,7 @@ import { SERVER_URI } from '../../config/constants';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../App";
 import { RouteProp } from "@react-navigation/native";
+import CodenamesBoard from "../../components/codenames/CodenamesBoard";
 
 type BoardScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Board'>;
 type BoardScreenRouteProp = RouteProp<RootStackParamList, 'Board'>;
@@ -23,7 +24,13 @@ export default class Board extends React.Component<Props> {
     }
 
     async componentDidMount() {
-        this.socket = socketIOClient(SERVER_URI, { query: { playerName: "board" } });
+        this.socket = socketIOClient(SERVER_URI, {
+            query: {
+                playerName: "board",
+                gameCode: this.props.route.params.gameCode,
+                gameName: this.props.route.params.gameName,
+            }
+        });
         this.socket.on("board", (board: any) => {
             if (Object.keys(board).length === 0) {
                 return;
@@ -57,7 +64,9 @@ export default class Board extends React.Component<Props> {
 
     render() {
         const BoardImpl = (() => {
-            switch (this.props.route.params.game) {
+            switch (this.props.route.params.gameName) {
+                case 'codenames':
+                    return CodenamesBoard;
                 case 'jaipur':
                     return JaipurBoard;
                 case 'sequence':

@@ -264,9 +264,9 @@ export default class SplendorBoard extends React.Component<BoardProps, State> im
     render() {
         const { faceupCards, coins, nobles, currentPlayerIndex } = this.state;
 
-        if (currentPlayerIndex === -1) {
-            return <Button title="Start Game" onPress={this.props.onStart} />;
-        }
+        // if (currentPlayerIndex === -1) {
+        //     return <Button title="Start Game" onPress={this.props.onStart} />;
+        // }
 
         const styles = {
             card: {

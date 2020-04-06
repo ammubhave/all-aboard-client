@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, Button, SafeAreaView, View, Picker } from 'react-native';
+import { TextInput, Button, SafeAreaView, View, Picker, Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
@@ -11,6 +11,7 @@ type Props = { navigation: HomeScreenNavigationProp; };
 
 type State = {
     playerName: string;
+    gameCode: string;
     selectedGame: string;
 };
 
@@ -20,6 +21,7 @@ export default class Home extends React.Component<Props, State> {
 
         this.state = {
             playerName: "",
+            gameCode: "",
             selectedGame: "jaipur",
         };
     }
@@ -29,17 +31,27 @@ export default class Home extends React.Component<Props, State> {
             <SafeAreaView style={styles.container}>
                 <KeyboardAwareScrollView>
                     <View>
+                        <Text>Game Code</Text>
+                        <TextInput
+                            onChangeText={gameCode => this.setState({ gameCode })}
+                            value={this.state.gameCode}
+                            style={styles.input}
+                        />
+                    </View>
+                    <View>
                         <Picker
                             selectedValue={this.state.selectedGame}
                             onValueChange={(itemValue, itemIndex) => this.setState({ selectedGame: itemValue })}
                         >
                             <Picker.Item label="Jaipur" value="jaipur" />
+                            {/* <Picker.Item label="Splendor" value="splendor" /> */}
+                            <Picker.Item label="Codenames" value="codenames" />
                         </Picker>
                     </View>
                     <View>
                         <Button
                             title="Board View"
-                            onPress={() => this.props.navigation.navigate('Board', { game: this.state.selectedGame })}
+                            onPress={() => this.props.navigation.navigate('Board', { gameName: this.state.selectedGame, gameCode: this.state.gameCode })}
                         />
                     </View>
                     <View>
@@ -50,8 +62,8 @@ export default class Home extends React.Component<Props, State> {
                         />
                         <Button
                             title="User View"
-                            disabled={this.state.playerName === ""}
-                            onPress={() => this.props.navigation.navigate('Hand', { playerName: this.state.playerName, game: this.state.selectedGame })}
+                            disabled={this.state.playerName === "" || this.state.playerName === "board" || this.state.gameCode === ""}
+                            onPress={() => this.props.navigation.navigate('Hand', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode })}
                         />
                     </View>
                 </KeyboardAwareScrollView>

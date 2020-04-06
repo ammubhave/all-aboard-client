@@ -8,6 +8,7 @@ import { SERVER_URI } from '../../config/constants';
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../App";
 import { RouteProp } from "@react-navigation/native";
+import CodenamesHand from "../../components/codenames/CodenamesHand";
 
 type HandScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Hand'>;
 type HandScreenRouteProp = RouteProp<RootStackParamList, 'Hand'>;
@@ -26,7 +27,13 @@ export default class Hand extends React.Component<Props> {
     }
 
     async componentDidMount() {
-        this.socket = socketIOClient(SERVER_URI, { query: { playerName: this.props.route.params.playerName } });
+        this.socket = socketIOClient(SERVER_URI, {
+            query: {
+                playerName: this.props.route.params.playerName,
+                gameCode: this.props.route.params.gameCode,
+                gameName: this.props.route.params.gameName,
+            }
+        });
         this.socket.on("hand", (hand: any) => {
             if (hand === undefined || hand === null || Object.keys(hand).length === 0) {
                 return;
@@ -45,7 +52,9 @@ export default class Hand extends React.Component<Props> {
 
     render() {
         const HandImpl = (() => {
-            switch (this.props.route.params.game) {
+            switch (this.props.route.params.gameName) {
+                case 'codenames':
+                    return CodenamesHand;
                 case 'jaipur':
                     return JaipurHand;
                 case 'sequence':

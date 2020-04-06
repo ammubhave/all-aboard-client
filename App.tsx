@@ -11,8 +11,8 @@ console.disableYellowBox = true;
 
 export type RootStackParamList = {
   Home: undefined;
-  Board: { game: string; };
-  Hand: { playerName: string, game: string; };
+  Board: { gameName: string; gameCode: string; };
+  Hand: { playerName: string, gameName: string; gameCode: string; };
 };
 const RootStack = createStackNavigator<RootStackParamList>();
 
