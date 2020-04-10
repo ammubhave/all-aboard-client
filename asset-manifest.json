@@ -1,0 +1,43 @@
+{
+  "files": {
+    "app.js": "/all-aboard-client/static/js/app.3dcca13f.chunk.js",
+    "app.js.map": "/all-aboard-client/static/js/app.3dcca13f.chunk.js.map",
+    "runtime~app.js": "/all-aboard-client/static/js/runtime~app.8108a3f6.js",
+    "runtime~app.js.map": "/all-aboard-client/static/js/runtime~app.8108a3f6.js.map",
+    "static/js/2.2d02d054.chunk.js": "/all-aboard-client/static/js/2.2d02d054.chunk.js",
+    "static/js/2.2d02d054.chunk.js.map": "/all-aboard-client/static/js/2.2d02d054.chunk.js.map",
+    "favicon-16.png": "/all-aboard-client/favicon-16.png",
+    "favicon-32.png": "/all-aboard-client/favicon-32.png",
+    "favicon.ico": "/all-aboard-client/favicon.ico",
+    "index.html": "/all-aboard-client/index.html",
+    "manifest.json": "/all-aboard-client/manifest.json",
+    "serve.json": "/all-aboard-client/serve.json",
+    "static/media/board.jpg": "/all-aboard-client/static/media/board.38645106.jpg",
+    "static/media/bonus_3_token.png": "/all-aboard-client/static/media/bonus_3_token.b7d6048e.png",
+    "static/media/bonus_4_token.png": "/all-aboard-client/static/media/bonus_4_token.9dbb865c.png",
+    "static/media/bonus_5_token.png": "/all-aboard-client/static/media/bonus_5_token.0b15f02d.png",
+    "static/media/camel-char.png": "/all-aboard-client/static/media/camel-char.87d3d7f8.png",
+    "static/media/camel_card.png": "/all-aboard-client/static/media/camel_card.a1e5c2c9.png",
+    "static/media/camel_token.png": "/all-aboard-client/static/media/camel_token.f1239e82.png",
+    "static/media/cloth_card.png": "/all-aboard-client/static/media/cloth_card.0d2307d0.png",
+    "static/media/cloth_token.png": "/all-aboard-client/static/media/cloth_token.b45112dd.png",
+    "static/media/coin.png": "/all-aboard-client/static/media/coin.f17a00ff.png",
+    "static/media/cover_card.png": "/all-aboard-client/static/media/cover_card.3f00f8c9.png",
+    "static/media/diamond_card.png": "/all-aboard-client/static/media/diamond_card.04b067c8.png",
+    "static/media/diamond_token.png": "/all-aboard-client/static/media/diamond_token.eb1081d0.png",
+    "static/media/gold_card.png": "/all-aboard-client/static/media/gold_card.f45f8f0b.png",
+    "static/media/gold_token.png": "/all-aboard-client/static/media/gold_token.31dad298.png",
+    "static/media/leather_card.png": "/all-aboard-client/static/media/leather_card.a9ca0b3b.png",
+    "static/media/leather_token.png": "/all-aboard-client/static/media/leather_token.027cb7e8.png",
+    "static/media/seal_of_excellence.png": "/all-aboard-client/static/media/seal_of_excellence.c17ff76a.png",
+    "static/media/silver_card.png": "/all-aboard-client/static/media/silver_card.d1251adf.png",
+    "static/media/silver_token.png": "/all-aboard-client/static/media/silver_token.404ac8cc.png",
+    "static/media/spice_card.png": "/all-aboard-client/static/media/spice_card.5d184b27.png",
+    "static/media/spice_token.png": "/all-aboard-client/static/media/spice_token.9a70cbc9.png"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.8108a3f6.js",
+    "static/js/2.2d02d054.chunk.js",
+    "static/js/app.3dcca13f.chunk.js"
+  ]
+}
