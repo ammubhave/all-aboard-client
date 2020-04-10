@@ -13,6 +13,7 @@ type State = {
     playerName: string;
     gameCode: string;
     selectedGame: string;
+    password: string;
 };
 
 export default class Home extends React.Component<Props, State> {
@@ -23,6 +24,7 @@ export default class Home extends React.Component<Props, State> {
             playerName: "",
             gameCode: "",
             selectedGame: "jaipur",
+            password: "",
         };
     }
 
@@ -30,6 +32,14 @@ export default class Home extends React.Component<Props, State> {
         return (
             <SafeAreaView style={styles.container}>
                 <KeyboardAwareScrollView>
+                    <View>
+                        <Text>Server Password</Text>
+                        <TextInput
+                            onChangeText={password => this.setState({ password })}
+                            value={this.state.password}
+                            style={styles.input}
+                        />
+                    </View>
                     <View>
                         <Text>Game Code</Text>
                         <TextInput
@@ -45,13 +55,14 @@ export default class Home extends React.Component<Props, State> {
                         >
                             <Picker.Item label="Jaipur" value="jaipur" />
                             {/* <Picker.Item label="Splendor" value="splendor" /> */}
-                            <Picker.Item label="Codenames" value="codenames" />
+                            {/* <Picker.Item label="Codenames" value="codenames" /> */}
                         </Picker>
                     </View>
                     <View>
                         <Button
                             title="Board View"
-                            onPress={() => this.props.navigation.navigate('Board', { gameName: this.state.selectedGame, gameCode: this.state.gameCode })}
+                            disabled={this.state.gameCode === ""}
+                            onPress={() => this.props.navigation.navigate('Board', { gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
                         />
                     </View>
                     <View>
@@ -63,7 +74,7 @@ export default class Home extends React.Component<Props, State> {
                         <Button
                             title="User View"
                             disabled={this.state.playerName === "" || this.state.playerName === "board" || this.state.gameCode === ""}
-                            onPress={() => this.props.navigation.navigate('Hand', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode })}
+                            onPress={() => this.props.navigation.navigate('Hand', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
                         />
                     </View>
                 </KeyboardAwareScrollView>

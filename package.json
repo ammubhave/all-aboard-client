@@ -1,13 +1,15 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "homepage": "http://all-aboard.amolbhave.com/",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "predeploy": "expo build:web",
+    "deploy": "gh-pages -d web-build"
   },
-  "proxy": "http://localhost:3000",
   "dependencies": {
     "@react-native-community/cli": "^4.3.0",
     "@react-native-community/masked-view": "0.1.5",
@@ -15,7 +17,9 @@
     "@react-navigation/stack": "^5.2.8",
     "axios": "^0.19.2",
     "expo": "~36.0.0",
+    "expo-font": "~8.0.0",
     "moment": "^2.24.0",
+    "native-base": "^2.13.12",
     "react": "~16.9.0",
     "react-dom": "~16.9.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
@@ -40,6 +44,7 @@
     "@types/react-native": "~0.60.23",
     "@types/socket.io-client": "^1.4.32",
     "babel-preset-expo": "~8.0.0",
+    "gh-pages": "^2.2.0",
     "typescript": "~3.6.3"
   },
   "private": true

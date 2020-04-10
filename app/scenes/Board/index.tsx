@@ -29,7 +29,8 @@ export default class Board extends React.Component<Props> {
                 playerName: "board",
                 gameCode: this.props.route.params.gameCode,
                 gameName: this.props.route.params.gameName,
-            }
+                password: this.props.route.params.password,
+            },
         });
         this.socket.on("board", (board: any) => {
             if (Object.keys(board).length === 0) {
