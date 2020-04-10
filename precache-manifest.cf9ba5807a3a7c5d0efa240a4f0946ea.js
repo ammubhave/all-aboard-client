@@ -108,6 +108,10 @@ self.__precacheManifest = [
     "url": "/expo-service-worker.js"
   },
   {
+    "revision": "c7c3fc1783cd14b39c33644574e8ca60",
+    "url": "/CNAME"
+  },
+  {
     "revision": "e10ce0552ee7802193950fa9181bd961",
     "url": "/favicon-16.png"
   },
