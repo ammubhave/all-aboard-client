@@ -1,6 +1,6 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "homepage": "http://all-aboard.amolbhave.com/",
+  "homepage": "https://all-aboard.amolbhave.com/",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
