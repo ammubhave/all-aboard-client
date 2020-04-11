@@ -8,5 +8,4 @@ export type BoardProps = {
 
 export default interface BaseBoard<S = {}> extends React.Component<BoardProps, S> {
     updateBoard(board: any): void;
-    updatePlayers(players: string[]): void;
 }

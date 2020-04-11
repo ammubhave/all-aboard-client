@@ -203,10 +203,6 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
         this.setState(state);
     }
 
-    updatePlayers(players: string[]) {
-        this.setState({ players });
-    }
-
     render() {
         const goodsTokenTrackTop = this.goodsTokenTrackTop;
         const goodsTokenTrackBottom = this.goodsTokenTrackBottom;

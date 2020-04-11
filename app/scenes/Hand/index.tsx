@@ -12,12 +12,30 @@ import CodenamesHand from "../../components/codenames/CodenamesHand";
 
 type HandScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Hand'>;
 type HandScreenRouteProp = RouteProp<RootStackParamList, 'Hand'>;
-type Props = {
+type HandScreenProps = {
     navigation: HandScreenNavigationProp;
     route: HandScreenRouteProp;
 };
 
-export default class Hand extends React.Component<Props> {
+export default class Hand extends React.Component<HandScreenProps> {
+    render() {
+        return <HandImpl
+            playerName={this.props.route.params.playerName}
+            gameCode={this.props.route.params.gameCode}
+            gameName={this.props.route.params.gameName}
+            password={this.props.route.params.password}
+            onBack={this.props.navigation.goBack} />;
+    }
+};
+
+type Props = {
+    playerName: string,
+    gameCode: string,
+    gameName: string,
+    password: string,
+    onBack: () => void,
+};
+export class HandImpl extends React.Component<Props> {
     socket: SocketIOClient.Socket;
     hand: React.RefObject<JaipurHand | SequenceHand | SplendorHand>;
 
@@ -29,10 +47,10 @@ export default class Hand extends React.Component<Props> {
     async componentDidMount() {
         this.socket = socketIOClient(SERVER_URI, {
             query: {
-                playerName: this.props.route.params.playerName,
-                gameCode: this.props.route.params.gameCode,
-                gameName: this.props.route.params.gameName,
-                password: this.props.route.params.password,
+                playerName: this.props.playerName,
+                gameCode: this.props.gameCode,
+                gameName: this.props.gameName,
+                password: this.props.password,
             },
         });
         this.socket.on("hand", (hand: any) => {
@@ -52,8 +70,8 @@ export default class Hand extends React.Component<Props> {
     };
 
     render() {
-        const HandImpl = (() => {
-            switch (this.props.route.params.gameName) {
+        const Impl = (() => {
+            switch (this.props.gameName) {
                 case 'codenames':
                     return CodenamesHand;
                 case 'jaipur':
@@ -65,6 +83,6 @@ export default class Hand extends React.Component<Props> {
             }
         })();
 
-        return <HandImpl ref={this.hand} onAction={this.onAction} />;
+        return <Impl ref={this.hand} onAction={this.onAction} />;
     }
 };

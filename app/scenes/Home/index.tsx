@@ -1,10 +1,12 @@
 import React from 'react';
-import { TextInput, Button, SafeAreaView, View, Picker, Text } from 'react-native';
+import { TextInput, SafeAreaView, View, Picker, Text } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { RootStackParamList } from '../../../App';
 import styles from './styles';
+import { SERVER_URI } from "../../config/constants";
+import Button from "../../components/Button";
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 type Props = { navigation: HomeScreenNavigationProp; };
@@ -22,7 +24,7 @@ export default class Home extends React.Component<Props, State> {
 
         this.state = {
             playerName: "",
-            gameCode: "",
+            gameCode: "default",
             selectedGame: "jaipur",
             password: "",
         };
@@ -33,12 +35,29 @@ export default class Home extends React.Component<Props, State> {
             <SafeAreaView style={styles.container}>
                 <KeyboardAwareScrollView>
                     <View>
+                        <Text>Server Address</Text>
+                        <TextInput value={SERVER_URI} style={styles.input} editable={false} />
+                    </View>
+                    <View>
                         <Text>Server Password</Text>
                         <TextInput
                             onChangeText={password => this.setState({ password })}
                             value={this.state.password}
                             style={styles.input}
                         />
+                    </View>
+                    <View style={styles.separator} />
+                    <View>
+                        <Text>Game</Text>
+                        <Picker
+                            selectedValue={this.state.selectedGame}
+                            onValueChange={(itemValue, itemIndex) => this.setState({ selectedGame: itemValue })}
+                            style={{ marginTop: 5, marginBottom: 8 }}
+                        >
+                            <Picker.Item label="Jaipur" value="jaipur" />
+                            {/* <Picker.Item label="Splendor" value="splendor" /> */}
+                            <Picker.Item label="Codenames" value="codenames" />
+                        </Picker>
                     </View>
                     <View>
                         <Text>Game Code</Text>
@@ -48,16 +67,7 @@ export default class Home extends React.Component<Props, State> {
                             style={styles.input}
                         />
                     </View>
-                    <View>
-                        <Picker
-                            selectedValue={this.state.selectedGame}
-                            onValueChange={(itemValue, itemIndex) => this.setState({ selectedGame: itemValue })}
-                        >
-                            <Picker.Item label="Jaipur" value="jaipur" />
-                            {/* <Picker.Item label="Splendor" value="splendor" /> */}
-                            {/* <Picker.Item label="Codenames" value="codenames" /> */}
-                        </Picker>
-                    </View>
+                    <View style={styles.separator} />
                     <View>
                         <Button
                             title="Board View"
@@ -65,17 +75,24 @@ export default class Home extends React.Component<Props, State> {
                             onPress={() => this.props.navigation.navigate('Board', { gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
                         />
                     </View>
+                    <View style={styles.separator} />
                     <View>
+                        <Text>Player Name</Text>
                         <TextInput
                             onChangeText={playerName => this.setState({ playerName })}
                             value={this.state.playerName}
                             style={styles.input}
                         />
                         <Button
-                            title="User View"
+                            title="Player View"
                             disabled={this.state.playerName === "" || this.state.playerName === "board" || this.state.gameCode === ""}
                             onPress={() => this.props.navigation.navigate('Hand', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
                         />
+                        {/* <Button
+                            title="Player and Board View"
+                            disabled={this.state.playerName === "" || this.state.playerName === "board" || this.state.gameCode === ""}
+                            onPress={() => this.props.navigation.navigate('HandAndBoard', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
+                        /> */}
                     </View>
                 </KeyboardAwareScrollView>
             </SafeAreaView>);

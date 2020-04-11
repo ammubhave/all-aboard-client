@@ -2,25 +2,25 @@ import React from 'react';
 import { View, StyleProp, ViewStyle, ImageStyle, Image, Text } from "react-native";
 import styles, { WIDTH, HEIGHT, RANGE } from "./styles";
 
-const BoardMapStrip: React.FunctionComponent<{ width: number, top?: number, bottom?: number }> = (props) => {
+const BoardMapStrip: React.FunctionComponent<{ width: number, top?: number, bottom?: number; }> = (props) => {
     return <View style={
         [styles.mat_strips, {
             width: WIDTH(props.width),
             top: HEIGHT(props.top),
             bottom: HEIGHT(props.bottom),
         }]}>{props.children}</View>;
-}
+};
 
-const BoardMapStripCircle: React.FunctionComponent<{ top?: number, bottom?: number, left?: number }> = (props) => {
+const BoardMapStripCircle: React.FunctionComponent<{ top?: number, bottom?: number, left?: number; }> = (props) => {
     return <View style={
         [styles.mat_strip_circle, {
             top: HEIGHT(props.top),
             bottom: HEIGHT(props.bottom),
             left: WIDTH(props.left),
         }]}>{props.children}</View>;
-}
+};
 
-const BoardMatCard: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, glow?: boolean }> = (props = { glow: false }) => {
+const BoardMatCard: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, glow?: boolean; }> = (props = { glow: false }) => {
     return <View style={[styles.mat_card, {
         top: HEIGHT(props.top),
         bottom: HEIGHT(props.bottom),
@@ -28,9 +28,9 @@ const BoardMatCard: React.FunctionComponent<{ top?: number, bottom?: number, lef
     },
     props.glow && styles.mat_card_glow,
     ]}>{props.children}</View>;
-}
+};
 
-const BoardCamel: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, flip?: boolean }> = (props = { flip: false }) => {
+const BoardCamel: React.FunctionComponent<{ top?: number, bottom?: number, left?: number, flip?: boolean; }> = (props = { flip: false }) => {
     return <Image source={require('./camel-char.png')}
         style={
             [{
@@ -45,15 +45,15 @@ const BoardCamel: React.FunctionComponent<{ top?: number, bottom?: number, left?
             },
             props.flip && { transform: [{ rotateX: "180deg" }, { rotateY: "180deg" }] }]
         } />;
-}
+};
 
-const BoardGoodsTokenTrack: React.FunctionComponent<{ top: number }> = (props) => {
+const BoardGoodsTokenTrack: React.FunctionComponent<{ top: number; }> = (props) => {
     return <View style={[styles.mat_goods_token_track, { top: HEIGHT(props.top) }]} />;
-}
+};
 
-const BoardBonusTokenTrack: React.FunctionComponent<{ top: number }> = (props) => {
+const BoardBonusTokenTrack: React.FunctionComponent<{ top: number; }> = (props) => {
     return <View style={[styles.mat_bonus_token_track, { top: HEIGHT(props.top) }]} />;
-}
+};
 
 export default function renderBoardMat() {
     const renderMatStrips = () => {
@@ -68,7 +68,7 @@ export default function renderBoardMat() {
                 <BoardMapStripCircle bottom={4} left={left} />
             ]),
         ];
-    }
+    };
 
     const renderGreyMat = () => {
         return <View style={styles.mat_grey_cover}></View>;
