@@ -112,16 +112,16 @@ self.__precacheManifest = [
     "url": "/static/media/assasin.411b1958.jpg"
   },
   {
+    "revision": "48c7ed4e7da9792af288a60d7242d615",
+    "url": "/expo-service-worker.js"
+  },
+  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/serve.json"
   },
   {
     "revision": "c7c3fc1783cd14b39c33644574e8ca60",
     "url": "/CNAME"
-  },
-  {
-    "revision": "48c7ed4e7da9792af288a60d7242d615",
-    "url": "/expo-service-worker.js"
   },
   {
     "revision": "e10ce0552ee7802193950fa9181bd961",
