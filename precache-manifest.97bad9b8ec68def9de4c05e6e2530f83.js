@@ -1,7 +1,7 @@
 self.__precacheManifest = [
   {
-    "revision": "44bf8e350c18b6da9ded",
-    "url": "/static/js/app.7e39a033.chunk.js"
+    "revision": "656cd6d46a214d2eba24",
+    "url": "/static/js/app.593bdc58.chunk.js"
   },
   {
     "revision": "dc6d7c46a725d6866bcd",
@@ -112,12 +112,12 @@ self.__precacheManifest = [
     "url": "/static/media/assasin.411b1958.jpg"
   },
   {
-    "revision": "c7c3fc1783cd14b39c33644574e8ca60",
-    "url": "/CNAME"
-  },
-  {
     "revision": "d0c694b562b2208635f250762cd7fc79",
     "url": "/serve.json"
+  },
+  {
+    "revision": "c7c3fc1783cd14b39c33644574e8ca60",
+    "url": "/CNAME"
   },
   {
     "revision": "48c7ed4e7da9792af288a60d7242d615",
@@ -136,7 +136,7 @@ self.__precacheManifest = [
     "url": "/favicon.ico"
   },
   {
-    "revision": "dd49cbf869cd2632c0c1481c96843f91",
+    "revision": "ac444e9e4057f48ead6c571ac3b3367d",
     "url": "/index.html"
   },
   {
