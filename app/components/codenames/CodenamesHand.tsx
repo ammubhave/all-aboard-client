@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView, View, StyleProp, ViewStyle, GestureResponderEvent, Text, TouchableOpacity } from 'react-native';
 import BaseHand, { HandProps } from '../BaseHand';
 import EStyleSheet from "react-native-extended-stylesheet";
+import Button from '../Button';
 import styles from "./styles";
 import {
     heightPercentageToDP as hp,
@@ -19,40 +20,40 @@ type State = {
 };
 
 
-export const Button: React.FunctionComponent<{ style?: StyleProp<ViewStyle>, flip?: boolean, title: string, disabled?: boolean, onPress?: (event: GestureResponderEvent) => void; }> = (props) => {
-    const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle>; }> = (rootProps) => {
-        return !props.disabled ?
-            <TouchableOpacity style={rootProps.style} onPress={props.onPress}>{rootProps.children}</TouchableOpacity> :
-            <View style={rootProps.style}>{rootProps.children}</View>;
-    };
+// export const Button: React.FunctionComponent<{ style?: StyleProp<ViewStyle>, flip?: boolean, title: string, disabled?: boolean, onPress?: (event: GestureResponderEvent) => void; }> = (props) => {
+//     const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle>; }> = (rootProps) => {
+//         return !props.disabled ?
+//             <TouchableOpacity style={rootProps.style} onPress={props.onPress}>{rootProps.children}</TouchableOpacity> :
+//             <View style={rootProps.style}>{rootProps.children}</View>;
+//     };
 
-    const fontSize = 64;
+//     const fontSize = 64;
 
-    return <RootElement
-        style={[{
-            backgroundColor: props.disabled ? "grey" : "red",
-            display: "flex",
-            borderRadius: 30,
-            margin: 5,
-            flex: 1,
-        }]}
-    >
-        <Text style={{
-            flex: 1,
-            color: "white",
-            fontWeight: "800",
-            fontSize: 20,
-            textAlign: "center",
-            textAlignVertical: "center",
-            borderWidth: 3,
-            borderRadius: 12,
-            padding: 2,
-            borderColor: 'black',
-        }}>
-            {props.title}
-        </Text>
-    </RootElement>;
-};
+//     return <RootElement
+//         style={[{
+//             backgroundColor: props.disabled ? "grey" : "red",
+//             display: "flex",
+//             borderRadius: 30,
+//             margin: 5,
+//             flex: 1,
+//         }]}
+//     >
+//         <Text style={{
+//             flex: 1,
+//             color: "white",
+//             fontWeight: "800",
+//             fontSize: 20,
+//             textAlign: "center",
+//             textAlignVertical: "center",
+//             borderWidth: 3,
+//             borderRadius: 12,
+//             padding: 2,
+//             borderColor: 'black',
+//         }}>
+//             {props.title}
+//         </Text>
+//     </RootElement>;
+// };
 
 export default class CodenamesHand extends React.Component<HandProps, State> implements BaseHand<State> {
     constructor(props: HandProps) {
@@ -122,13 +123,18 @@ export default class CodenamesHand extends React.Component<HandProps, State> imp
             <View style={{ flex: 1, flexDirection: "column" }}>
                 <View style={{ flex: 1, display: "flex" }}>
                     <View style={{
-                        flex: 1,
+                        // flex: 1,
                         display: "flex",
                         flexDirection: "row",
                         margin: hp("4%"),
+                        height: 48,
                     }}>
                         {this.state.buttons.map(([title, action, enabled]) => {
-                            return <Button title={title} onPress={() => { }} />;
+                            return <Button title={title} onPress={() => {
+                                if (action === "back") {
+                                    this.props.onBack();
+                                }
+                            }} />;
                         })}
                     </View>
                 </View>

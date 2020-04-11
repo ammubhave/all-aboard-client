@@ -290,11 +290,7 @@ export default class JaipurBoard extends React.Component<BoardProps, State> impl
                                 title = title + " (" + this.state.players[i] + ")";
                             }
                             return <Button title={title} disabled={disabled} onPress={() => {
-                                if (action === "start") {
-                                    this.props.onStart();
-                                } else {
-                                    this.props.onAction({ "type": action });
-                                }
+                                this.props.onAction({ "type": action });
                             }} />;
                         });
                     };
