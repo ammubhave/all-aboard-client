@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView, Dimensions, TouchableNativeFeedback, TouchableHighlight, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import { ScreenOrientation } from 'expo';
-import BaseHand, { HandProps } from '../BaseHand';
 import { renderCard } from './utils';
+
+type Props = {
+    onAction(action: any): Promise<void>;
+    onBack(): void;
+};
 
 type State = {
     hand: string[],
@@ -10,15 +14,9 @@ type State = {
     displayText: string,
 };
 
-export default class JaipurHand extends React.Component<HandProps, State> implements BaseHand<State> {
-    constructor(props: HandProps) {
+export default class JaipurHand extends React.Component<Props, State> {
+    constructor(props: Props) {
         super(props);
-
-        // this.state = {
-        //     hand: ["diamond", "gold", "silver", "leather", "cloth", "diamond"],
-        //     handIsSelected: [false, false, false, false, true, true, true],
-        //     displayText: "Your opponent gained a token of excellence",
-        // };
 
         this.state = {
             hand: [],

@@ -1,12 +1,14 @@
-import React, { Component } from 'react';
-import { View, Text, SafeAreaView, Image, StyleProp, ViewStyle, ImageStyle, ImageBackground, Dimensions, TouchableOpacity, GestureResponderEvent } from 'react-native';
-import { ScreenOrientation } from 'expo';
+import React from 'react';
+import { View, SafeAreaView } from 'react-native';
 
-import BaseBoard, { BoardProps } from '../BaseBoard';
 import styles, { HEIGHT, WIDTH } from './styles';
-import { fontSize } from '../../styles/theme';
 import { Card, Coin, Token, Button } from './utils';
 import renderBoardMat from './renderBoardMat';
+
+type Props = {
+    onAction(action: any): Promise<void>;
+    onBack(): void;
+};
 
 type PlayerState = {
     sealsOfExcellence: number,
@@ -27,6 +29,7 @@ type PlayerState = {
         bonus_5: number[],
     },
 };
+
 type State = {
     playerStates: [PlayerState, PlayerState],
     market: [string, string, string, string, string],
@@ -54,13 +57,13 @@ type State = {
     players: string[],
 };
 
-export default class JaipurBoard extends React.Component<BoardProps, State> implements BaseBoard<State> {
+export default class JaipurBoard extends React.Component<Props, State>{
     goodsTokenTrackTop: number;
     goodsTokenTrackBottom: number;
     bonusTokenTrackTop: number;
     bonusTokenTrackBottom: number;
 
-    constructor(props: BoardProps) {
+    constructor(props: Props) {
         super(props);
 
         this.goodsTokenTrackTop = 20;

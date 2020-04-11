@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleProp, ViewStyle, ImageStyle, Image, Text } from "react-native";
+import { View, Image, Text } from "react-native";
 import styles, { WIDTH, HEIGHT, RANGE } from "./styles";
 
 const BoardMapStrip: React.FunctionComponent<{ width: number, top?: number, bottom?: number; }> = (props) => {

@@ -2,45 +2,43 @@ import React from 'react';
 import socketIOClient from "socket.io-client";
 
 import { SERVER_URI } from '../../config/constants';
-import CodenamesBoard from "../../components/codenames/CodenamesBoard";
-import JaipurBoard from '../../components/jaipur/JaipurBoard';
-import SequenceBoard from '../../components/sequence/SequenceBoard';
-import SplendorBoard from '../../components/splendor/SplendorBoard';
+import JaipurScreen from "../../components/jaipur/JaipurScreen";
 
 type Props = {
+    playerName: string,
     gameCode: string,
     gameName: string,
     password: string,
     onBack: () => void,
 };
 
-export default class BoardImpl extends React.Component<Props> {
+export default class GameScreenImpl extends React.Component<Props> {
     socket: SocketIOClient.Socket;
-    board: React.RefObject<CodenamesBoard | JaipurBoard>;
+    screen: React.RefObject<JaipurScreen>;
 
     constructor(props: Props) {
         super(props);
-        this.board = React.createRef();
+        this.screen = React.createRef();
     }
 
-    async componentDidMount() {
+    componentDidMount() {
         this.socket = socketIOClient(SERVER_URI, {
             query: {
-                playerName: "board",
+                playerName: this.props.playerName,
                 gameCode: this.props.gameCode,
                 gameName: this.props.gameName,
                 password: this.props.password,
             },
         });
-        this.socket.on("board", (board: any) => {
-            if (Object.keys(board).length === 0) {
+        this.socket.on("content", (screen: any) => {
+            if (Object.keys(screen).length === 0) {
                 return;
             }
-            this.board.current.updateBoard(board);
+            this.screen.current.updateScreen(screen);
         });
     }
 
-    async componentWillUnmount() {
+    componentWillUnmount() {
         this.socket.close();
     }
 
@@ -51,18 +49,19 @@ export default class BoardImpl extends React.Component<Props> {
     render() {
         const Impl = (() => {
             switch (this.props.gameName) {
-                case 'codenames':
-                    return CodenamesBoard;
+                // case 'codenames':
+                //     return CodenamesBoard;
                 case 'jaipur':
-                    return JaipurBoard;
-                case 'sequence':
-                    return SequenceBoard;
-                case 'splendor':
-                    return SplendorBoard;
+                    return JaipurScreen;
+                // case 'sequence':
+                //     return SequenceBoard;
+                // case 'splendor':
+                //     return SplendorBoard;
             }
         })();
         return <Impl
-            ref={this.board}
+            ref={this.screen}
+            playerName={this.props.playerName}
             onAction={this.onAction}
             onBack={this.props.onBack} />;
     }

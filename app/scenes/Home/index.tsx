@@ -8,8 +8,8 @@ import styles from './styles';
 import { SERVER_URI } from "../../config/constants";
 import Button from "../../components/Button";
 
-type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
-type Props = { navigation: HomeScreenNavigationProp; };
+type HomeSceneNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
+type Props = { navigation: HomeSceneNavigationProp; };
 
 type State = {
     playerName: string;
@@ -72,7 +72,7 @@ export default class Home extends React.Component<Props, State> {
                         <Button
                             title="Board View"
                             disabled={this.state.gameCode === ""}
-                            onPress={() => this.props.navigation.navigate('Board', { gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
+                            onPress={() => this.props.navigation.navigate('GameScreen', { playerName: 'board', gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
                         />
                     </View>
                     <View style={styles.separator} />
@@ -86,13 +86,8 @@ export default class Home extends React.Component<Props, State> {
                         <Button
                             title="Player View"
                             disabled={this.state.playerName === "" || this.state.playerName === "board" || this.state.gameCode === ""}
-                            onPress={() => this.props.navigation.navigate('Hand', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
+                            onPress={() => this.props.navigation.navigate('GameScreen', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
                         />
-                        {/* <Button
-                            title="Player and Board View"
-                            disabled={this.state.playerName === "" || this.state.playerName === "board" || this.state.gameCode === ""}
-                            onPress={() => this.props.navigation.navigate('HandAndBoard', { playerName: this.state.playerName, gameName: this.state.selectedGame, gameCode: this.state.gameCode, password: this.state.password })}
-                        /> */}
                     </View>
                 </KeyboardAwareScrollView>
             </SafeAreaView>);
