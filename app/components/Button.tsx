@@ -6,6 +6,7 @@ const Button: React.FunctionComponent<{
     title: string,
     disabled?: boolean,
     onPress?: (event: GestureResponderEvent) => void,
+    style?: StyleProp<ViewStyle>,
 }> = (props) => {
     const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle>; }> = (rootProps) => {
         return !props.disabled ?
@@ -15,25 +16,24 @@ const Button: React.FunctionComponent<{
 
 
     return <RootElement
-        style={{
+        style={[{
             backgroundColor: props.disabled ? "grey" : "#7a42f4",
             flex: 1,
             display: "flex",
-            borderRadius: 4,
+            flexDirection: "row",
+            alignItems: "center",
             margin: 5,
-        }}
+            borderRadius: 5,
+            borderWidth: 3,
+        }, props.style]}
     >
         <Text style={{
             flex: 1,
             color: "white",
-            fontWeight: "800",
+            fontWeight: "500",
             fontSize: 19,
             textAlign: "center",
-            textAlignVertical: "center",
-            borderWidth: 3,
-            borderRadius: 5,
             padding: 4,
-            borderColor: 'black',
         }}>
             {props.title}
         </Text>

@@ -3,6 +3,7 @@ import socketIOClient from "socket.io-client";
 
 import { SERVER_URI } from '../../config/constants';
 import JaipurScreen from "../../components/jaipur/JaipurScreen";
+import CodenamesScreen from "../../components/codenames/CodenamesScreen";
 
 type Props = {
     playerName: string,
@@ -49,8 +50,8 @@ export default class GameScreenImpl extends React.Component<Props> {
     render() {
         const Impl = (() => {
             switch (this.props.gameName) {
-                // case 'codenames':
-                //     return CodenamesBoard;
+                case 'codenames':
+                    return CodenamesScreen;
                 case 'jaipur':
                     return JaipurScreen;
                 // case 'sequence':

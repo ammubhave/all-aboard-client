@@ -24,7 +24,7 @@ export default class Home extends React.Component<Props, State> {
 
         this.state = {
             playerName: "",
-            gameCode: "default",
+            gameCode: "",
             selectedGame: "jaipur",
             password: "",
         };
