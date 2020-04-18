@@ -4,6 +4,7 @@ import socketIOClient from "socket.io-client";
 import { SERVER_URI } from '../../config/constants';
 import JaipurScreen from "../../components/jaipur/JaipurScreen";
 import CodenamesScreen from "../../components/codenames/CodenamesScreen";
+import SplendorScreen from "../../components/splendor/SplendorScreen";
 
 type Props = {
     playerName: string,
@@ -56,8 +57,8 @@ export default class GameScreenImpl extends React.Component<Props> {
                     return JaipurScreen;
                 // case 'sequence':
                 //     return SequenceBoard;
-                // case 'splendor':
-                //     return SplendorBoard;
+                case 'splendor':
+                    return SplendorScreen;
             }
         })();
         return <Impl

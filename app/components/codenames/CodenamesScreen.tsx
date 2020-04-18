@@ -360,8 +360,8 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
             flex: 1,
             backgroundColor: "#446983",
         }}>
-            <View style={{ flex: 1, flexDirection: "column", display: "flex" }}>
-                <View style={{ flex: 2, display: "flex", flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flex: 1, flexDirection: "column" }}>
+                <View style={{ flex: 2, flexDirection: "row", alignItems: "center" }}>
                     {this.state.buttons.map(([title, action, enabled]) => {
                         return <Button title={title} disabled={!enabled} onPress={() => {
                             if (action === "back") {
@@ -372,7 +372,7 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                         }} />;
                     })}
                 </View>
-                <View style={{ flex: 1, display: "flex", flexDirection: "row", alignItems: "center" }}>
+                <View style={{ flex: 1, flexDirection: "row", alignItems: "center" }}>
                     {this.state.playerNameDisplay && <Text style={{
                         flex: 1,
                         textAlign: "center",

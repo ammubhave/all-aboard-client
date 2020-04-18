@@ -25,7 +25,7 @@ export default class Home extends React.Component<Props, State> {
         this.state = {
             playerName: "",
             gameCode: "",
-            selectedGame: "jaipur",
+            selectedGame: "",
             password: "",
         };
     }
@@ -44,6 +44,10 @@ export default class Home extends React.Component<Props, State> {
                             onChangeText={password => this.setState({ password })}
                             value={this.state.password}
                             style={styles.input}
+                            autoCorrect={false}
+                            textContentType="none"
+                            autoCapitalize="none"
+                            autoCompleteType="off"
                         />
                     </View>
                     <View style={styles.separator} />
@@ -55,7 +59,7 @@ export default class Home extends React.Component<Props, State> {
                             style={{ marginTop: 5, marginBottom: 8 }}
                         >
                             <Picker.Item label="Jaipur" value="jaipur" />
-                            {/* <Picker.Item label="Splendor" value="splendor" /> */}
+                            <Picker.Item label="Splendor" value="splendor" />
                             <Picker.Item label="Codenames" value="codenames" />
                         </Picker>
                     </View>
@@ -65,6 +69,10 @@ export default class Home extends React.Component<Props, State> {
                             onChangeText={gameCode => this.setState({ gameCode })}
                             value={this.state.gameCode}
                             style={styles.input}
+                            autoCorrect={false}
+                            textContentType="none"
+                            autoCapitalize="none"
+                            autoCompleteType="off"
                         />
                     </View>
                     <View style={styles.separator} />
