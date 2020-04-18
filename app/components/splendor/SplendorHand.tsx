@@ -20,7 +20,7 @@ export default class SplendorHand extends React.Component<Props, State> {
 
         this.state = {
             hand: [],
-            displayText: "Waiting for a new game",
+            displayText: "Connecting to server",
         };
     }
 

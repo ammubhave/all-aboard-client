@@ -519,60 +519,19 @@ export default class SplendorBoard extends React.Component<Props, State> {
 
         let faceupCards = [];
         for (let i = 0; i < 3; i++) {
-            faceupCards.push(new Array(4).fill({ color: "blue", prestige: 3, cost: { white: 0, green: 3, red: 3, black: 5, blue: 0 } }));
+            faceupCards.push(new Array(4).fill(null));
         }
-
-        faceupCards[0][0] = { color: "red", prestige: 3, cost: { green: 3, red: 3, black: 5, white: 0, blue: 0 } };
-        faceupCards[1][1] = null;
 
         this.state = {
             buttons: [["Back", "back", true]],
-            faceupCards,
+            faceupCards: [],
             coins: { white: 0, black: 0, red: 0, blue: 0, green: 0, gold: 0 },
             coinsSelectable: { white: false, black: false, red: false, blue: false, green: false, gold: false },
             pilesSelectable: [false, false, false],
-            pilesVisible: [true, true, true],
-            nobles: [
-                { cost: [{ color: "green", count: 4 }, { color: "red", count: 4 }, { color: "blue", count: 4 }], prestige: 3, nobleIndex: 6 },
-                null,
-                { cost: [{ color: "green", count: 4 }, { color: "green", count: 4 }, { color: "green", count: 4 }], prestige: 3, nobleIndex: 8 },
-                { cost: [{ color: "green", count: 4 }, { color: "green", count: 4 }, { color: "green", count: 4 }], prestige: 3, nobleIndex: 9 },
-                { cost: [{ color: "green", count: 4 }, { color: "green", count: 4 }, { color: "green", count: 4 }], prestige: 3, nobleIndex: 10 },
-            ],
-            displayText: "Hello",
-            playerStates: [{
-                name: "Amol",
-                isTurn: false,
-                coins: { white: 0, black: 0, red: 0, blue: 0, green: 0, gold: 0 },
-                prestige: 0,
-                coinsSelectable: false,
-                reservedCards: [],
-                cards: { white: 0, black: 0, red: 0, blue: 0, green: 0 },
-            }, {
-                name: "Amol",
-                isTurn: false,
-                coins: { white: 0, black: 0, red: 0, blue: 0, green: 0, gold: 0 },
-                coinsSelectable: false,
-                prestige: 0,
-                reservedCards: [],
-                cards: { white: 0, black: 0, red: 0, blue: 0, green: 0 },
-            }, {
-                name: "Amol",
-                isTurn: false,
-                coins: { white: 0, black: 0, red: 0, blue: 0, green: 0, gold: 0 },
-                coinsSelectable: false,
-                prestige: 0,
-                reservedCards: [],
-                cards: { white: 0, black: 0, red: 0, blue: 0, green: 0 },
-            }, {
-                name: "Amol",
-                isTurn: false,
-                coins: { white: 0, black: 0, red: 0, blue: 0, green: 0, gold: 0 },
-                coinsSelectable: false,
-                prestige: 0,
-                reservedCards: [],
-                cards: { white: 0, black: 0, red: 0, blue: 0, green: 0 },
-            }]
+            pilesVisible: [false, false, false],
+            nobles: [],
+            displayText: "Connecting to the server",
+            playerStates: []
         };
     }
 
