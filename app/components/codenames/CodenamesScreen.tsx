@@ -34,56 +34,6 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
     constructor(props: GameScreenProps) {
         super(props);
 
-        // const board = new Array();
-        // for (let i = 0; i < 5; i++) {
-        //     const row = new Array<BoardCell>();
-        //     for (let j = 0; j < 1; j++) {
-        //         row.push({
-        //             kind: "word",
-        //             color: "white",
-        //             value: "RABBIT", isSelectable: true,
-        //         });
-        //     }
-        //     row.push({
-        //         kind: "assasin",
-        //         color: "white",
-        //         value: "RABBIT",
-        //     });
-        //     row.push({
-        //         kind: "bystander",
-        //         color: "white",
-        //         value: "RABBIT",
-        //     });
-        //     row.push({
-        //         kind: "agent-blue",
-        //         color: "white",
-        //         value: "RABBIT",
-        //     });
-        //     row.push({
-        //         kind: "agent-red",
-        //         color: "white",
-        //         value: "RABBIT",
-        //     });
-        //     board.push(row);
-        // }
-
-        // this.state = {
-        //     players: {
-        //         red: ["Amol", "Anusha", "Bla Bla"],
-        //         redCodemaster: "Reddy",
-        //         blue: ["John", "Oliver", "Stephen Colbert"],
-        //         blueCodemaster: "Bluey",
-        //     },
-        //     buttons: [
-        //         ["Back", "back", true],
-        //         ["Become Codemaster", "become-codemaster", true],
-        //         ["Switch to Red Team", "become-codemaster", true],
-        //     ],
-        //     displayText: "You are Blue Team!",
-        //     status: "board",
-        //     board,
-        // };
-
         this.state = {
             players: {
                 red: [],
@@ -185,30 +135,23 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                 style.push({ width: height * aspectRatio, height });
             }
 
-            // console.log(layout, style);
-
-            const RootElement: React.FunctionComponent<{ style?: StyleProp<ViewStyle>; onLayout?: (event: { nativeEvent: { layout: { x: number; y: number; width: number; height: number; }; }; }) => void; }> = (rootProps) => {
-                return props.isSelectable ?
-                    <TouchableOpacity style={rootProps.style} onPress={props.onPress} onLayout={props.onLayout}>{rootProps.children}</TouchableOpacity> :
-                    <View style={rootProps.style} onLayout={props.onLayout}>{rootProps.children}</View>;
-            };
-
             return (
-                <RootElement
+                <TouchableOpacity
                     {...props}
+                    disabled={!props.isSelectable}
+                    onPress={props.onPress}
                     style={[{
                         height: hp(15),
                         width: hp((500.0 / 345.0) * 14),
                     }, style]}
                     onLayout={({ nativeEvent: { layout } }) => { setLayout(layout); console.log(layout); }}
-                >{props.children}</RootElement>
+                >{props.children}</TouchableOpacity>
             );
         };
 
         const renderRow = (row, rowIndex) => {
             return <View style={{
                 flex: 1,
-                display: "flex",
                 flexDirection: "row"
             }}>
                 {row.map((cell, colIndex) => {
@@ -246,7 +189,6 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                                                     borderWidth: wp(0.15),
                                                     backgroundColor: "#d0b694",
                                                     borderRadius: wp(0.1),
-                                                    display: "flex",
                                                     flexDirection: "column",
                                                 }}>
                                                     <View style={{
@@ -301,7 +243,7 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                                                     borderWidth: wp(0.15),
                                                     borderRadius: wp(0.1),
                                                 }}>
-                                                    <ImageBackground source={require('./bystander.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
+                                                    <ImageBackground source={require('./assets/bystander.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
                                                 </View>;
                                             case 'agent-red':
                                                 return <View style={{
@@ -310,7 +252,7 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                                                     borderWidth: wp(0.15),
                                                     borderRadius: wp(0.1),
                                                 }}>
-                                                    <ImageBackground source={require('./agent-red.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
+                                                    <ImageBackground source={require('./assets/agent-red.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
                                                 </View>;
                                             case 'agent-blue':
                                                 return <View style={{
@@ -319,7 +261,7 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                                                     borderWidth: wp(0.15),
                                                     borderRadius: wp(0.1),
                                                 }}>
-                                                    <ImageBackground source={require('./agent-blue.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
+                                                    <ImageBackground source={require('./assets/agent-blue.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
                                                 </View>;
                                             case 'assasin':
                                                 return <View style={{
@@ -328,7 +270,7 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                                                     borderWidth: wp(0.15),
                                                     borderRadius: wp(0.1),
                                                 }}>
-                                                    <ImageBackground source={require('./assasin.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
+                                                    <ImageBackground source={require('./assets/assasin.jpg')} style={{ width: "100%", height: "100%" }}></ImageBackground>
                                                 </View>;
                                         }
                                     })()
@@ -342,7 +284,6 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
 
         return <View style={{
             flex: 1,
-            display: "flex",
             flexDirection: "column",
             backgroundColor: "#817264",
             margin: 20,
@@ -386,7 +327,7 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
                         fontSize: Dimensions.get("window").width * 0.02,
                     }}>{this.state.displayText}</Text>
                 </View>
-                <View style={{ flex: 14, flexDirection: "row", display: "flex" }}>
+                <View style={{ flex: 14, flexDirection: "row" }}>
                     {
                         (() => {
                             switch (this.state.status) {

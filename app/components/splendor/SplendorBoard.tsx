@@ -107,7 +107,7 @@ export const Card: React.FunctionComponent<{
                 flex: 1,
                 flexDirection: "column",
             }} source={colorToCardImage(props.color)}>
-                <View style={{ flex: 1, backgroundColor: "rgba(255, 255, 255, 0.6)", display: "flex", flexDirection: "row", alignItems: "center" }}>
+                <View style={{ flex: 1, backgroundColor: "rgba(255, 255, 255, 0.6)", flexDirection: "row", alignItems: "center" }}>
                     <Text style={{
                         fontSize: cardHeight * 0.2,
                         paddingLeft: "6%",

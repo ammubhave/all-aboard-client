@@ -136,19 +136,12 @@ export const Token: React.FunctionComponent<{ top?: number, bottom?: number, lef
 };
 
 export const Button: React.FunctionComponent<{ flip?: boolean, title: string, disabled?: boolean, onPress?: (event: GestureResponderEvent) => void; }> = (props) => {
-
-    const RootElement: React.FunctionComponent<{ style: StyleProp<ViewStyle>; }> = (rootProps) => {
-        return !props.disabled ?
-            <TouchableOpacity style={rootProps.style} onPress={props.onPress}>{rootProps.children}</TouchableOpacity> :
-            <View style={rootProps.style}>{rootProps.children}</View>;
-    };
-
-
-    return <RootElement
+    return <TouchableOpacity
+        disabled={props.disabled}
+        onPress={props.onPress}
         style={{
             backgroundColor: props.disabled ? "grey" : "red",
             flex: 1,
-            display: "flex",
             borderRadius: 30,
             margin: 5,
         }}
@@ -167,7 +160,7 @@ export const Button: React.FunctionComponent<{ flip?: boolean, title: string, di
         }}>
             {props.title}
         </Text>
-    </RootElement>;
+    </TouchableOpacity>;
 };
 
 export function renderCard(type: string, isSelected = false, style: StyleProp<ViewStyle> = false) {

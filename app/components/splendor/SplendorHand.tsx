@@ -45,14 +45,10 @@ export default class SplendorHand extends React.Component<Props, State> {
     render() {
         return <SafeAreaView style={{
             flex: 1,
-            display: "flex",
-            flexDirection: "column",
             backgroundColor: "#1c2147",
         }}>
             <View style={{ flex: 3, flexDirection: "row" }}>
-                {/* <ScrollView style={{ flex: 1, flexDirection: "row", marginVertical: 20 }} horizontal={true}> */}
                 {this.renderHand()}
-                {/* </ScrollView> */}
             </View>
             <View style={{ flex: 1 }}>
                 <Text style={{ flex: 1, textAlign: "center", lineHeight: 80, fontSize: 35, color: "white", textShadowColor: "black", textShadowRadius: 10, }}>{this.state.displayText}</Text>
