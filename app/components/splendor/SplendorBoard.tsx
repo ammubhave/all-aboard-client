@@ -552,7 +552,7 @@ export default class SplendorBoard extends React.Component<Props, State> {
                             name={this.state.playerStates[this.state.playerStates.length - 1].name}
                             isTurn={this.state.playerStates[this.state.playerStates.length - 1].isTurn}
                             coins={this.state.playerStates[this.state.playerStates.length - 1].coins}
-                            coinsSelectable={this.state.playerStates[this.state.playerStates.length - 2].coinsSelectable}
+                            coinsSelectable={this.state.playerStates[this.state.playerStates.length - 1].coinsSelectable}
                             cards={this.state.playerStates[this.state.playerStates.length - 1].cards}
                             reservedCards={this.state.playerStates[this.state.playerStates.length - 1].reservedCards}
                             prestige={this.state.playerStates[this.state.playerStates.length - 1].prestige} />
