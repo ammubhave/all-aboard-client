@@ -50,11 +50,11 @@ export default class CodenamesScreen extends React.Component<GameScreenProps, St
     }
 
     async componentDidMount() {
-        await ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
+        await ScreenOrientation?.lockAsync(ScreenOrientation.OrientationLock.LANDSCAPE);
     }
 
     async componentWillUnmount() {
-        await ScreenOrientation.unlockAsync();
+        await ScreenOrientation?.unlockAsync();
     }
 
     updateScreen(content: any) {
