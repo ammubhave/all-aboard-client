@@ -1,6 +1,6 @@
 # All A-Board Client
 
-This is the client component of All A-Board. View the (main project page)[https://github.com/ammubhave/all-aboard] for All A-Board for getting started instructions.
+This is the client component of All A-Board. View the [main project page](https://github.com/ammubhave/all-aboard) for All A-Board for getting started instructions.
 
 ## Running the client
 
@@ -14,7 +14,7 @@ By default, the client connects the production instance of the server. To connec
 
 ## Deployment
 
-The app is both deployed on Expo and on Github pages at (https://all-aboard.amolbhave.com/)[https://all-aboard.amolbhave.com/]. For deploying to expo, you can click on the corresponding publish link when you run expo start. For deploying to Github pages, run the following command.
+The app is both deployed on Expo and on Github pages at [https://all-aboard.amolbhave.com/](https://all-aboard.amolbhave.com/). For deploying to expo, you can click on the corresponding publish link when you run expo start. For deploying to Github pages, run the following command.
 
 ```
 npm run deploy
