@@ -643,17 +643,6 @@ export default class SplendorBoard extends React.Component<Props, State> {
                 </View>
             </View>
             <View style={{ flex: 1, flexDirection: "row" }}>
-                {(this.state.playerStates.length === 2 || this.state.playerStates.length === 4) &&
-                    <PlayerArea side="bottom"
-                        onCoinPress={(color) => { this.props.onAction({ type: "select-player-coin", color }); }}
-                        name={this.state.playerStates[1].name}
-                        isTurn={this.state.playerStates[1].isTurn}
-                        coins={this.state.playerStates[1].coins}
-                        coinsSelectable={this.state.playerStates[1].coinsSelectable}
-                        cards={this.state.playerStates[1].cards}
-                        reservedCards={this.state.playerStates[1].reservedCards}
-                        prestige={this.state.playerStates[1].prestige} />
-                }
                 {this.state.playerStates.length > 0 &&
                     <PlayerArea side="bottom"
                         onCoinPress={(color) => { this.props.onAction({ type: "select-player-coin", color }); }}
@@ -664,6 +653,17 @@ export default class SplendorBoard extends React.Component<Props, State> {
                         cards={this.state.playerStates[0].cards}
                         reservedCards={this.state.playerStates[0].reservedCards}
                         prestige={this.state.playerStates[0].prestige} />
+                }
+                {(this.state.playerStates.length === 2 || this.state.playerStates.length === 4) &&
+                    <PlayerArea side="bottom"
+                        onCoinPress={(color) => { this.props.onAction({ type: "select-player-coin", color }); }}
+                        name={this.state.playerStates[1].name}
+                        isTurn={this.state.playerStates[1].isTurn}
+                        coins={this.state.playerStates[1].coins}
+                        coinsSelectable={this.state.playerStates[1].coinsSelectable}
+                        cards={this.state.playerStates[1].cards}
+                        reservedCards={this.state.playerStates[1].reservedCards}
+                        prestige={this.state.playerStates[1].prestige} />
                 }
             </View>
         </SafeAreaView>;
