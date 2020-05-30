@@ -1,11 +1,11 @@
 {
   "files": {
-    "app.js": "/static/js/app.644fcf1b.chunk.js",
-    "app.js.map": "/static/js/app.644fcf1b.chunk.js.map",
-    "runtime~app.js": "/static/js/runtime~app.b3244af7.js",
-    "runtime~app.js.map": "/static/js/runtime~app.b3244af7.js.map",
-    "static/js/2.1838249e.chunk.js": "/static/js/2.1838249e.chunk.js",
-    "static/js/2.1838249e.chunk.js.map": "/static/js/2.1838249e.chunk.js.map",
+    "app.js": "/static/js/app.682cd160.chunk.js",
+    "app.js.map": "/static/js/app.682cd160.chunk.js.map",
+    "runtime~app.js": "/static/js/runtime~app.4b0f5a04.js",
+    "runtime~app.js.map": "/static/js/runtime~app.4b0f5a04.js.map",
+    "static/js/2.0f157933.chunk.js": "/static/js/2.0f157933.chunk.js",
+    "static/js/2.0f157933.chunk.js.map": "/static/js/2.0f157933.chunk.js.map",
     "CNAME": "/CNAME",
     "favicon-16.png": "/favicon-16.png",
     "favicon-32.png": "/favicon-32.png",
@@ -69,8 +69,8 @@
     "static/media/white_gem.png": "/static/media/white_gem.280f28cf.png"
   },
   "entrypoints": [
-    "static/js/runtime~app.b3244af7.js",
-    "static/js/2.1838249e.chunk.js",
-    "static/js/app.644fcf1b.chunk.js"
+    "static/js/runtime~app.4b0f5a04.js",
+    "static/js/2.0f157933.chunk.js",
+    "static/js/app.682cd160.chunk.js"
   ]
 }
